@@ -1,9 +1,10 @@
 import random
+import elo
 
 #Problem object
 class Problem:
 	def __init__(self):
-		self.rank = 1
+		self.elo = elo.ProblemElo(0)
 	#gets or generates a problem
 	def getProblem (self):
 		return self.prob
@@ -11,10 +12,7 @@ class Problem:
 		return self.answer
 	#updates the ranking of the problem based on the user rank and correct or not
 	def updateRank (self, rank, correct):
-		if (correct):
-			self.rank=self.rank+1
-		else:
-			self.rank=self.rank-1
+		self.elo.updateElo(rank, not correct)
 	def saveProblem (self):
 		return self
 
