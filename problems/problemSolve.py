@@ -11,8 +11,8 @@ class Problem:
 	def getSolution (self):
 		return self.answer
 	#updates the ranking of the problem based on the user rank and correct or not
-	def updateRank (self, rank, correct):
-		self.elo.updateElo(rank, not correct)
+	def updateRank (self, userRank, correct):
+		self.elo.updateElo(userRank, not correct)
 	def saveProblem (self):
 		return self
 

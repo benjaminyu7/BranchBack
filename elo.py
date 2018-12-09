@@ -7,6 +7,7 @@ class Elo:
 		pass
 	def getElo(self):
 		return self.elo
+
 class ProblemElo(Elo):
 	def updateElo(self, rank, rise):
 		if (rise):
@@ -19,6 +20,7 @@ class ProblemElo(Elo):
 				self.elo=self.elo-1
 			else:
 				self.elo=self.elo-5
+
 class UserElo(Elo):
 	def __init__(self, elo):
 		self.elo=elo

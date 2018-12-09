@@ -20,18 +20,18 @@ currUser = user.User(0)
 rank=elo.UserElo(0)
 while (True):
 	temp = ps.getProblem(rank.getElo())
+	print('Your Rank: ' + str(currUser.getElo()));
+	print('Problem Rank: ' + str(temp.elo.getElo()));	
 	print(temp.getProblem())
 	user_input = raw_input('>')
 	if(user_input=='exit'):
 		break
 	elif (user_input==temp.answer):
 		print("correct")
-		temp.updateRank(rank.getElo(), True)
+		ps.updateProblem(rank.getElo(),True)
 		currUser.elo.updateElo(temp.elo.getElo(), True)
 	else:
 		print("incorrect")
-		temp.updateRank(rank.getElo(), False)
+		ps.updateProblem(rank.getElo(),False)
 		currUser.elo.updateElo(temp.elo.getElo(), False)
-	print('Your Rank: ' + str(currUser.getElo()));
-	print('Problem Rank: ' + str(temp.elo.getElo()));	
 
