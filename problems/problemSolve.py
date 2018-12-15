@@ -2,9 +2,13 @@ import random
 import elo
 
 #Problem object
-class Problem:
+class Problem(object):
 	def __init__(self):
 		self.elo = elo.ProblemElo(0)
+		self.description = ""
+	def __str__(self):
+		converted= self.description + "\n" + str(self.elo.getElo())
+		return converted
 	#gets or generates a problem
 	def getProblem (self):
 		return self.prob
@@ -18,6 +22,9 @@ class Problem:
 
 #generates a addition problem that uses one digit
 class AdditionProblem(Problem):
+	def __init__(self):
+		Problem.__init__(self)
+		self.description = "Single digit addition"
 	def getProblem(self):
 		int1=random.randint(1,5)
 		int2=random.randint(1,9-int1)
@@ -26,11 +33,17 @@ class AdditionProblem(Problem):
 		return self.prob
 
 class SubtractionProblem(Problem):
+	def __init__(self):
+		Problem.__init__(self)
+		self.description = "Single digit subtraction"
 	def getProblem(self):
 		pass
 
 #generates a single digit multiplication problem
 class MultiplicationProblem(Problem):
+	def __init__(self):
+		Problem.__init__(self)
+		self.description = "Single digit multiplication"
 	def getProblem(self):
 		int1=random.randint(1,3)
 		int2=random.randint(1,9//int1)
@@ -39,11 +52,17 @@ class MultiplicationProblem(Problem):
 		return self.prob
 
 class DivisionProblem(Problem):
+	def __init__(self):
+		Problem.__init__(self)
+		self.description = "Single digit division"
 	def getProblem(self):
 		pass
 
 #f(x) = ax + b
 class AlgebraProblem(Problem):
+	def __init__(self):
+		Problem.__init__(self)
+		self.description = "Single digit algebra"
 	def getProblem(self):
 		a = random.randint(1,3)
 		x = random.randint(1,8//a)
