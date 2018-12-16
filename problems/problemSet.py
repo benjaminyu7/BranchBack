@@ -6,16 +6,17 @@ class ProblemSet:
 	def __init__(self):
 		self.problems=[]
 		self.currentProblem = -1
+
 	def findIndex(self, rank):
 		index1 = 0
 		index2 = len(self.problems)-1
 		tempIndex=0
 		if(len(self.problems)==0):
 			return 0
-		elif(self.problems[0].elo.getElo() > rank):
+		elif(self.problems[0].elo.getElo() >= rank):
 			return 0
-		elif(self.problems[len(self.problems)-1].elo.getElo() < rank):
-			return len(self.problems)
+		elif(self.problems[len(self.problems)-1].elo.getElo() <= rank):
+			return len(self.problems)-1
 		while(index2>index1):
 			tempIndex = (index2+index1)//2
 			if(rank > self.problems[tempIndex].elo.getElo()):
@@ -27,9 +28,16 @@ class ProblemSet:
 		if(self.problems[tempIndex].elo.getElo() < rank):
 			tempIndex += 1
 		return tempIndex
+
 	def addProblem(self,prob):
 		tempIndex = self.findIndex(prob.elo.getElo())
-		self.problems.insert(tempIndex,prob)
+		if(len(self.problems) == 0):
+			self.problems.append(prob)
+		elif(prob.elo.getElo() > self.problems[tempIndex].elo.getElo()):
+			self.problems.append(prob)
+		else:
+			self.problems.insert(tempIndex,prob)
+
 	#returns a problem suitable for the rank of the user in a certain range of rank
 	def getProblem(self, rank):
 		index = self.findIndex(rank)
@@ -37,6 +45,7 @@ class ProblemSet:
 			return None
 		self.currentProblem = index
 		return self.problems[index]
+
 	#updates the placement of a problem if the rank is updated
 	def updateProblem(self, rank, correct):
 		self.problems[self.currentProblem].updateRank(rank,correct)
