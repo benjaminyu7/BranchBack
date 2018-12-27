@@ -51,6 +51,7 @@ class ProblemSet:
 		self.problems[self.currentProblem].updateRank(rank,correct)
 		temp = self.problems.pop(self.currentProblem)
 		self.addProblem(temp)
+
 	def getElo(self):
 		elos = []
 		for x in self.problems:
