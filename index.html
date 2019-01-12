@@ -10,15 +10,15 @@
 		<script src='frontend/javascript/header.js'></script>
 		<script src='frontend/javascript/problem.js'></script>
 		<script>
-			let requestURL = 'https://mxzm4k2xt5.execute-api.us-east-2.amazonaws.com/default/pythonTest';
+			let requestURL = 'backend/getProblem.py';
 			let request = new XMLHttpRequest();
 			request.open('GET', requestURL);
-			request.responseType = 'json';
+			request.responseType = 'text';
 			request.send();
 			request.onload = function () {
 				let content = document.getElementById('content');
 				let response = document.createElement('h2');
-				response.textContent = 'Success';
+				response.textContent = request.response;
 				content.appendChild(response);
 			}
 		</script>
